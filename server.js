@@ -12,7 +12,7 @@ const io = require("socket.io")(server, {
 })
 
 io.on("connection", (socket) => {
-	socket.emit("me", socket.id)
+	socket.emit("me", "0000")
 
 	socket.on("disconnect", () => {
 		socket.broadcast.emit("callEnded")
