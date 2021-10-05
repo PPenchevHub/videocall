@@ -7,11 +7,11 @@ import React, { useEffect, useRef, useState } from "react"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import Peer from "simple-peer"
 import io from "socket.io-client"
-import "./App.css"
+import Video from "./Video"
 
 
 const socket = io.connect('http://localhost:5000')
-function App() {
+function IdContainer() {
 	const [ me, setMe ] = useState("")
 	const [ stream, setStream ] = useState()
 	const [ receivingCall, setReceivingCall ] = useState(false)
@@ -95,18 +95,9 @@ function App() {
 
 	return (
 		<>
-			<h1 style={{ textAlign: "center", color: '#fff' }}>Zoomish</h1>
-		<div className="container">
-			<div className="video-container">
-				<div className="video">
-					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
-				</div>
-				<div className="video">
-					{callAccepted && !callEnded ?
-					<video playsInline ref={userVideo} autoPlay style={{ width: "300px"}} />:
-					null}
-				</div>
-			</div>
+			<h1 style={{ textAlign: "center", color: '#fff' }}>Като спре месинджъра</h1>
+      <div className="container">
+      <Video myVideo={myVideo} stream = {stream} callAccepted={callAccepted} callEnded={callEnded} userVideo={userVideo}></Video>
 			<div className="myId">
 				<TextField
 					id="filled-basic"
@@ -157,4 +148,4 @@ function App() {
 	)
 }
 
-export default App
+export default IdContainer
