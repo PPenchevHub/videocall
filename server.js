@@ -4,8 +4,12 @@ const http = require("http")
 const app = express()
 const server = http.createServer(app)
 app.use(express.static(path.join(__dirname, 'frontend/build',"index.html")));
-const socket = require("socket.io")
-const io = socket(server)
+const io = require("socket.io")(server, {
+	cors: {
+		origin: "http://localhost:3000",
+		methods: [ "GET", "POST" ]
+	}
+})
 
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id)
