@@ -6,7 +6,7 @@ const server = http.createServer(app)
 app.use(express.static(path.join(__dirname, 'frontend/build',"index.html")));
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "http://localhost:3000",
+		origin: "https://615c8375bbb2da11f260c298--relaxed-curran-3cedc6.netlify.app/",
 		methods: [ "GET", "POST" ]
 	}
 })
